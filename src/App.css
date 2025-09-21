@@ -1,38 +1,781 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Existing sidebar, profile, nav styling aapka jaisa tha */
+.sidebar {
+  background-color:#0782e0;
+  color: #fff;
+  width: 260px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 16px;
+  user-select:none;
+}
+
+.brand {
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+.collapse-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  gap: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: large;
+  font-weight: 600;
+}
+
+.profile-section {
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: white;
+  gap: 12px;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.profile-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.avatar-icon {
+  font-size: 1.9rem;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.profile-name {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.profile-sub {
+  font-weight: 400;
+  opacity: 0.8;
+  font-size: 0.8rem;
+}
+
+.profile-menu {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background-color 0.15s ease;
+}
+.profile-menu-item:hover,
+.profile-menu-item active{
+  font-size: large;
+  font-weight: 600;
+}
+
+.profile-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app-shell {
+  display: flex;
+  min-height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-main {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #e0eaf5;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 6%);
+  padding: 20px;
+}
+
+/* New CSS starts here: Home Page Layout */
+
+/* Outer container for entire page */
+.home-main-shell {
+  max-width: 1280px;
+  margin: 20px auto 50px auto;
+  padding: 0;
+}
+
+/* Branding text row */
+.branding-row {
+  margin-bottom: 15px;
+  text-align: center;
+}
+.home-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #0782e0;
+  letter-spacing: 1.3px;
+  margin: 0;
+}
+
+/* Search bar containing from, to and flip */
+.search-bar-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Input boxes for 'From' and 'To' stops */
+.main-stop-input {
+  flex: 1 1 220px;
+  font-size: 1.2rem;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px solid #bfbfbf;
+  background-color: #f7f4fa;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  transition: all 0.3s ease;
+}
+.main-stop-input:focus {
+  outline: none;
+  border-color: #8e5a66;
+  box-shadow: 0 0 10px rgba(142, 90, 102, 0.45);
+  background-color: #f1e6f2;
+}
+
+/* Flip button style */
+.swap-btn {
+  background: #f7eaf1;
+  color: #6f4a5a;
+  font-size: 2rem;
+  border-radius: 50%;
+  border: 1.5px solid #ddd;
+  padding: 0 14px;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgb(111 74 90 / 15%);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+.swap-btn:hover {
+  background-color: #e7c9dd;
+  color: #571857;
+}
+
+/* Find nearest bus button */
+.find-btn {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: white;
+  background: #FF0000;
+  padding: 13px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 15px rgba(111, 74, 90, 0.45);
+  transition: transform 0.2s;
+}
+.find-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #904f6e 70%, #bd9eab 98%);
+}
+
+/* Content split rows */
+.main-content-row {
+  display: flex;
+  gap: 36px;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 500px;
+}
+
+/* Left side: Search + Map combined */
+.left-content {
+  flex: 3 1 0;
+}
+
+/* Right side: Available bus list */
+.right-content {
+  flex: 1 1 0;
+  max-height: 580px;
+  overflow-y: auto;
+  /* background: ; */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 16px #d1cfea44;
+}
+
+/* Map card style on left */
+.bus-map-section {
+  padding: 28px 20px 20px 20px;
+  background: #f8f7fc;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px #d1cfea33;
+  min-height: 420px;
+}
+
+/* Available Buses header */
+.results-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.2px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #513756;
+}
+
+/* Filter icon */
+.filter-btn {
+  background: #f6edfa;
+  border-radius: 12px;
+  border: 1.5px solid #cdb9da;
+  width: 38px;
+  height: 38px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.filter-btn:hover {
+  background-color: #e4d1ea;
+}
+
+/* The filter popup container */
+.filter-popup {
+  position: absolute;
+  right: 25px;
+  top: 70px;
+  background: #fff7fd;
+  border: 1.5px solid #cdb9da;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px #9a78ab77;
+  padding: 20px;
+  z-index: 150;
+  min-width: 210px;
+}
+
+/* Popup filter options */
+.filter-popup label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #4a2e54;
+  display: block;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+/* Max fare input in filter */
+.small-fare-input {
+  width: 90px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 1rem;
+  border: 1px solid #c6a3c3;
+  margin-top: 5px;
+}
+
+/* Bus list */
+.bus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Scrollbar styling for right-content */
+.right-content::-webkit-scrollbar {
+  width: 8px;
+}
+.right-content::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+.right-content::-webkit-scrollbar-thumb {
+  background: #b59ec5;
+  border-radius: 8px;
+}
+
+/* Responsive below 900px */
+@media (max-width: 900px) {
+  .main-content-row {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  .right-content {
+    max-height: none;
+    height: auto;
+  }
+  .left-content, .right-content {
+    width: 100%;
+  }
+}
+.bus-map-section{
+  background-color: #ffffff;
+  padding: 7px 15px 15px 15px;
+  min-height: 500px;
+  min-width: 800px;
+  background-size: cover;
+}
+.section-label{
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7px;
+}
+.trackbus-card{
+  height: 700px;
+  width: 900px;
+}
+.trackbus-title{
+  justify-content: center;
+  display: flex;
+}
+.trackbus-form{
+  display: flex;
+  justify-content: center;
+}
+.input-field.big-input{
+  height: 53px;
+  width: 400px;
+  border-radius: 10px;
+  font-size: large;
+}
+.trackbus-btn{
+  height: 58.2px;
+  width: 80px;
+  border-radius: 10px;
+  padding: 1px 2px;
+  margin-left: 15px;
+  color: white;
+  background-color: #FF0000;
+  font-size: large;
+  font-weight: 700;
+}
+/*Emergency edit */
+.phone-link {
+  color: #0044cc; /* link blue */
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+}
+
+.phone-link:hover, .phone-link:focus {
+  color: #002e8a;
+  text-decoration: underline;
+  transform: scale(1.003);
+  outline: none;
+}
+
+.phone-link:active {
+  color: #001f4d;
+  transform: scale(0.95);
+}
+/*About Hovever */
+.about-header h2 {
+  font-size: 2.8rem;
+  text-align: center;
+  color: #422c57;
+  font-weight: 900;
+  margin-bottom: 0.2em;
+  letter-spacing: 1.1px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #734a82;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #5b4365;
+  margin-bottom: 0.8em;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Features grid row for desktop */
+.features-grid {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Each feature card */
+.feature-card {
+  max-width: 260px;
+  background-color: #f9f6fc;
+  border-radius: 14px;
+  text-align: center;
+  padding: 22px 14px 28px 14px;
+  box-shadow: 0 8px 22px rgb(143 56 126 / 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.feature-card:hover {
+  transform: translateY(-7px) scale(1.05);
+  box-shadow: 0 16px 38px rgb(143 56 126 / 0.3);
+}
+
+.feature-icon {
+  color: #843c9a;
+  font-size: 3.8rem;
+  margin-bottom: 1.1rem;
+}
+
+.feature-card h3 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.9rem;
+  color: #5a3264;
+}
+
+.feature-card p {
+  color: #624e67;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Responsive for smaller screen */
+@media (max-width: 700px) {
+  .features-grid {
+    justify-content: center;
+  }
+  .feature-card {
+    max-width: 90vw;
+  }
+}
+/* sign in styling*/
+/* Container */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #5864ea5e, #777dd1);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card with subtle shadow and rounded corners */
+.auth-card {
+  background-color: #f9f7fa;
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(131, 96, 120, 0.25);
+  padding: 40px 35px 45px 35px;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Title styling */
+.auth-title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #513756;
+  margin-bottom: 30px;
+  letter-spacing: 1.4px;
+  text-align: center;
+  user-select: none;
+}
+
+/* Form layout */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+/* Form group */
+.auth-row label {
+  display: block;
+  font-weight: 600;
+  color: #7f5a80;
+  font-size: 0.97rem;
+  margin-bottom: 7px;
+  user-select: none;
+}
+
+.auth-row input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1.8px solid #cbbad1;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-row input:focus {
+  outline: none;
+  border-color: #6a4481;
+  box-shadow: 0 0 8px #987abbcc;
+}
+
+/* Buttons */
+.auth-btn {
+  font-weight: 900;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  border-radius: 14px;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.18s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.auth-btn.primary {
+  background: linear-gradient(90deg, #693f75 65%, #a48cbe 110%);
+  color: #fff;
+  box-shadow: 0 7px 18px #aa82c6cc;
+}
+
+.auth-btn.primary:hover,
+.auth-btn.primary:focus {
+  background: linear-gradient(90deg, #592e62 65%, #8f6dab 110%);
+  color: #efeff1;
+  transform: scale(1.07);
+  outline: none;
+}
+
+/* Ghost button style */
+.auth-btn.ghost {
+  background: transparent;
+  border: 2px solid #ab94c0;
+  color: #7c5d92;
+}
+
+.auth-btn.ghost:hover,
+.auth-btn.ghost:focus {
+  background: #7c5d92;
+  color: #faf9fa;
+  outline: none;
+}
+
+/* Link as button */
+.auth-link {
+  background: transparent;
+  color: #8f6181;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  user-select: none;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.auth-link:hover,
+.auth-link:focus {
+  color: #693f75;
+  outline: none;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ffffff;
+  user-select: none;
+}
+
+.brand-logo {
+  height: 50px;
+  width: 50px;
+  margin-right: 0px;
+  margin-left: 0px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+/* Mobile phone responsive */
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    width: 60px !important; /* collapse or narrow sidebar */
+    height: 100vh;
+    overflow: hidden;
+    z-index: 999;
+  }
+
+  .sidebar.collapsed {
+    width: 60px !important;
+  }
+
+  /* Hide brand text, keep icon if any */
+  .brand {
+    font-size: 0;
+    overflow: hidden;
+  }
+
+  /* Collapse nav text, show only icons if available */
+  .nav-item {
+    justify-content: center;
+    padding: 12px 0;
+    font-size: 0;
+  }
+
+  .nav-item:hover,
+  .nav-item.active {
+    font-size: 0;
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Profile section collapsed */
+  .profile-section {
+    padding: 0;
+    border: none;
+  }
+
+  .profile-btn {
+    padding: 8px 0;
+    justify-content: center;
+    font-size: 0;
+  }
+
+  /* Main content full width and shifted right of sidebar */
+  .app-main {
+    margin-left: 60px;
+    padding: 10px 12px;
+    border-radius: 0;
+    height: auto;
+  }
+
+  /* Main content column for top-down scroll on mobile */
+  .app-main,
+  .main-content-row {
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+
+  /* On phones, stack main content vertically */
+  .main-content-row {
+    gap: 20px;
+  }
+
+  .left-content,
+  .right-content {
+    min-width: 100% !important;
+    border-radius: 12px;
+    padding: 15px;
+  }
+
+  /* Adjust map height for smaller screens */
+  .bus-map-section {
+    min-height: 280px !important;
+  }
+
+  /* Reduce font sizes and padding in search bar */
+  .search-bar-main {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .main-stop-input {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .swap-btn,
+  .find-btn {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-radius: 10px;
+  }
+
+  /* Filter popup size and position adjustment */
+  .filter-popup {
+    top: 50px !important;
+    left: auto !important;
+    right: 10px !important;
+    min-width: 80vw !important;
+    max-width: 90vw !important;
   }
 }
