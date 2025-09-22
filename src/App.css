@@ -779,3 +779,243 @@
     max-width: 90vw !important;
   }
 }
+.add-bus-number {
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.add-bus-number input {
+  padding: 6px 10px;
+  font-size: 16px;
+  width: 150px;
+  border-radius: 6px;
+  border: 1px solid #bcd9ff;
+}
+/* AddBus.css */
+
+/* Container for centering the card */
+.add-bus-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #777dd1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+/* Card style */
+.add-bus-form {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 30px 40px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form heading */
+.add-bus-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Labels */
+.add-bus-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Input fields */
+.add-bus-form input[type="text"],
+.add-bus-form select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+/* Input focus effect */
+.add-bus-form input[type="text"]:focus,
+.add-bus-form select:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.3);
+  outline: none;
+}
+
+/* Intermediate routes row */
+.route-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 5px;
+}
+
+/* Buttons inside routes */
+.remove-btn {
+  background: #ff4b5c;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.remove-btn:hover {
+  background: #ff1c2e;
+}
+
+.add-route-btn {
+  background: #1dd1a1;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: 0.3s ease;
+}
+
+.add-route-btn:hover {
+  background: #10ac84;
+}
+
+/* Submit button */
+.submit-btn {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(37, 117, 252, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+  .add-bus-form {
+    padding: 25px 20px;
+  }
+
+  .submit-btn {
+    font-size: 16px;
+  }
+}
+/* Dashboard css  */
+.dashboard-container {
+  padding: 30px;
+  max-width: 720px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.dashboard-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 1.3px;
+  color: #1e2a78;
+}
+
+/* Grid layout for stat cards */
+.stat-grid {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Stat cards styling */
+.stat-card {
+  flex: 1;
+  min-width: 150px;
+  background: linear-gradient(135deg, #f0f4ff, #d9e4ff);
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgb(30 42 120 / 0.12);
+  padding: 28px 24px;
+  text-align: center;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: default;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+}
+
+.stat-label {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #4254a4;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-weight: 900;
+  font-size: 2.8rem;
+  color: #192352;
+}
+
+/* Add bus button card */
+.add-bus-card {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 150px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgb(37 99 235 / 0.35);
+  padding: 30px 24px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-bus-card:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  box-shadow: 0 14px 35px rgb(30 64 175 / 0.55);
+}
+
+.plus-icon {
+  font-size: 42px;
+  margin-bottom: 6px;
+}
+
+/* Chart container card */
+.chart-container {
+  background: white;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 12px 28px rgb(30 42 120 / 0.18);
+  max-width: 100%;
+}
+
+.add{
+  color: white;
+}

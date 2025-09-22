@@ -14,22 +14,21 @@ const Home = () => {
   const [showResults, setShowResults] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [category, setCategory] = useState("");
-  const [maxFare, setMaxFare] = useState("");
 
   // Flip From and To
   const handleFlip = () => {
-    setFrom(prevFrom => {
-      setTo(prevTo => prevFrom);
+    setFrom((prevFrom) => {
+      setTo((prevTo) => prevFrom);
       return to;
     });
   };
 
-  // Filter logic
-  const filteredBuses = sampleBuses.filter(bus =>
-    (from === "" || bus.from.toLowerCase().includes(from.toLowerCase())) &&
-    (to === "" || bus.to.toLowerCase().includes(to.toLowerCase())) &&
-    (category === "" || (category === "AC" ? bus.isAC : !bus.isAC)) &&
-    (maxFare === "" || bus.fare <= parseInt(maxFare))
+  // Filter logic without maxFare
+  const filteredBuses = sampleBuses.filter(
+    (bus) =>
+      (from === "" || bus.from.toLowerCase().includes(from.toLowerCase())) &&
+      (to === "" || bus.to.toLowerCase().includes(to.toLowerCase())) &&
+      (category === "" || (category === "AC" ? bus.isAC : !bus.isAC))
   );
 
   const mapMarkers = showResults ? filteredBuses : [];
@@ -43,14 +42,16 @@ const Home = () => {
       <div className="search-bar-main">
         <input
           value={from}
-          onChange={e => setFrom(e.target.value)}
+          onChange={(e) => setFrom(e.target.value)}
           placeholder="From Bus Stop"
           className="main-stop-input"
         />
-        <button className="swap-btn" onClick={handleFlip} title="Flip Stops">&#8646;</button>
+        <button className="swap-btn" onClick={handleFlip} title="Flip Stops">
+          &#8646;
+        </button>
         <input
           value={to}
-          onChange={e => setTo(e.target.value)}
+          onChange={(e) => setTo(e.target.value)}
           placeholder="To Destination"
           className="main-stop-input"
         />
@@ -74,7 +75,7 @@ const Home = () => {
               <button
                 className="filter-btn"
                 title="Filter"
-                onClick={() => setShowFilter(v => !v)}
+                onClick={() => setShowFilter((v) => !v)}
               >
                 &#9776;
               </button>
@@ -91,7 +92,7 @@ const Home = () => {
                     boxSizing: "border-box",
                   }}
                 >
-                  {/* Cross (close) button */}
+                  {/* Close button */}
                   <button
                     style={{
                       position: "absolute",
@@ -102,7 +103,7 @@ const Home = () => {
                       fontSize: 20,
                       color: "#622e5d",
                       cursor: "pointer",
-                      padding: 0
+                      padding: 0,
                     }}
                     aria-label="Close filter"
                     onClick={() => setShowFilter(false)}
@@ -110,13 +111,14 @@ const Home = () => {
                   >
                     &times;
                   </button>
-                  <div style={{ marginBottom: "10px", fontWeight: 'bold' }}>Filters</div>
+
+                  <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Filters</div>
                   <label>
                     <input
                       type="radio"
                       value=""
                       checked={category === ""}
-                      onChange={e => setCategory(e.target.value)}
+                      onChange={(e) => setCategory(e.target.value)}
                     /> All
                   </label>
                   <label>
@@ -124,7 +126,7 @@ const Home = () => {
                       type="radio"
                       value="AC"
                       checked={category === "AC"}
-                      onChange={e => setCategory(e.target.value)}
+                      onChange={(e) => setCategory(e.target.value)}
                     /> AC
                   </label>
                   <label>
@@ -132,19 +134,8 @@ const Home = () => {
                       type="radio"
                       value="NOAC"
                       checked={category === "NOAC"}
-                      onChange={e => setCategory(e.target.value)}
+                      onChange={(e) => setCategory(e.target.value)}
                     /> Non-AC
-                  </label>
-                  <label style={{ marginTop: "10px", display: "block" }}>
-                    Max Fare (₹):&nbsp;
-                    <input
-                      type="number"
-                      value={maxFare}
-                      onChange={e => setMaxFare(e.target.value)}
-                      className="small-fare-input"
-                      min={0}
-                      style={{ width: 80 }}
-                    />
                   </label>
                 </div>
               )}

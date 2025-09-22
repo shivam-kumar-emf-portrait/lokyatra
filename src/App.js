@@ -9,19 +9,10 @@ import TrackBus from "./pages/TrackBus";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Emergency from "./pages/Emergency";
-
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-
-function Dashboard() {
-  return (
-    <div className="card">
-      <h2>Dashboard</h2>
-      {/* Dashboard content */}
-    </div>
-  );
-}
-
+import Dashboard from "./pages/admin/dashboard";
+import AddBus from "./pages/admin/AddBus";
 export default function App() {
   return (
     <div className="app-shell">
@@ -36,6 +27,7 @@ export default function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/addbus" element={<AddBus />} />
         </Routes>
       </main>
     </div>
